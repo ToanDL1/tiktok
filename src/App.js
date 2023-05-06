@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { publicRoutes } from '~/routes/routes';
 import DefaultLayOut from '~/components/Layout/DefaultLayout/DefaultLayout';
+import '~/fontawasome.js';
 
 function App() {
     return (

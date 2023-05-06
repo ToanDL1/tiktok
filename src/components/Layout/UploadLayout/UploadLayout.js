@@ -1,4 +1,4 @@
-import Header from '../DefaultLayout/Header/Heders';
+import Header from '../DefaultLayout/Header/Header';
 
 function UploadLayout({ children }) {
     return (
