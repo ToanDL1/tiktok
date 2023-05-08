@@ -1,13 +1,21 @@
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {
+    faMagnifyingGlass,
+    faCircleXmark,
+    faSpinner,
+    faRegistered,
+    faEllipsisVertical,
+} from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper/Wrapper';
 import styles from './Header.module.scss';
 import image from '~/assets/img';
+import AccountItem from '~/components/AccountItem';
+import Button from '~/components/Button';
 
 console.log(image.logo);
 
@@ -16,7 +24,7 @@ function Header() {
 
     useEffect(() => {
         setTimeout(() => {
-            setSearchResult([1, 2, 3]);
+            setSearchResult([]);
         }, 3000);
     }, []);
 
@@ -31,11 +39,15 @@ function Header() {
                     interactive
                     visible={searchResult.length > 0}
                     render={(attrs) => (
-                        <PopperWrapper>
-                            <div className="box" tabIndex="-1" {...attrs}>
-                                Kết quả
-                            </div>
-                        </PopperWrapper>
+                        <div className={clsx(styles['search-result'])} tabIndex="-1" {...attrs}>
+                            <PopperWrapper>
+                                <h4 className={clsx(styles['search-title'])}>Accounts</h4>
+                                <AccountItem />
+                                <AccountItem />
+                                <AccountItem />
+                                <AccountItem />
+                            </PopperWrapper>
+                        </div>
                     )}
                 >
                     <div className={clsx(styles.search)}>
@@ -55,7 +67,32 @@ function Header() {
                     </div>
                 </Tippy>
 
-                <div className={clsx(styles.action)}></div>
+                <div className={clsx(styles.action)}>
+                    <Button text>Login</Button>
+                    <Button primary leftIcon={<FontAwesomeIcon icon={faRegistered} />}>
+                        Register
+                    </Button>
+
+                    <Tippy
+                        interactive
+                        visible
+                        render={(attrs) => (
+                            <div className={clsx(styles['search-result'])} tabIndex="-1" {...attrs}>
+                                <PopperWrapper>
+                                    <h4 className={clsx(styles['search-title'])}>Accounts</h4>
+                                    <AccountItem />
+                                    <AccountItem />
+                                    <AccountItem />
+                                    <AccountItem />
+                                </PopperWrapper>
+                            </div>
+                        )}
+                    >
+                        <button className={clsx(styles['vertical-ellipsis-btn'])}>
+                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                    </Tippy>
+                </div>
             </div>
         </header>
     );
